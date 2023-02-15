@@ -7,3 +7,6 @@ dist
 .env.*
 tmp
 .now
+
+# Local Netlify folder
+.netlify
