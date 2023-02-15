@@ -1,3 +1,8 @@
 [functions]
 	directory = "./functions"
 	node_bundler = "esbuild"
+
+[[redirects]]
+	from = "/*"
+	to = "/.netlify/functions/:splat"
+	status = 200
