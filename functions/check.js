@@ -10,7 +10,7 @@ exports.handler = async e => {
 	if (!params || !params.url) return send(400, { error: true, message: 'missing url' })
 
 	const checkWMs = () => new Promise((resolve, reject) => {
-    const wm = new Webmention({ limit: params.limit || 10 })
+		const wm = new Webmention({ limit: params.limit || 10 })
 		wm.on('error', e => {
 			reject({ error: true, message: e.message })
 		})
@@ -34,7 +34,7 @@ exports.handler = async e => {
 		})
 
 		wm.fetch(params.url)
-  })
+	})
 
 	try {
 		const res = await checkWMs()
