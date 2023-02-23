@@ -1,4 +1,16 @@
-# webmention.app
+# Fork of webmention.app
+
+This forked version of [webmention.app](https://github.com/remy/wm) adds support for parsing links outside of `e-content`. It is deployed to [Netlify](https://netlify.com) and uses a [function](https://functions.netlify.com/) to receive requests.
+
+To check for webmentions:
+
+**`GET`** https://webmention.netlify.app/check?url=:url
+
+To send webmentions:
+
+**`POST`** https://webmention.netlify.app/check?url=:url
+
+---
 
 ## Automate your outgoing webmentions
 
