@@ -1,5 +1,5 @@
 const tap = require('tap');
-const { findEntries } = require('../lib/microformat/dom');
+const { findEntries } = require('../shared/lib/microformat/dom');
 
 const fixture = {
   items: [
@@ -23,7 +23,7 @@ const fixture = {
   },
 };
 
-tap.test('empty h-entry', t => {
+tap.test('empty h-entry', (t) => {
   const res = findEntries(fixture.items);
 
   t.equal(res.length, 0);

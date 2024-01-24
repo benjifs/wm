@@ -1,5 +1,5 @@
-import Webmention from '../lib/webmention'
-const sendMention = require('../lib/send')
+import Webmention from '../shared/lib/webmention'
+const sendMention = require('../shared/lib/send')
 
 const respond = (code, body) => ({ statusCode: code, body: JSON.stringify(body) })
 
