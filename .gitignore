@@ -7,6 +7,23 @@ dist
 .env.*
 tmp
 .now
+.tap
+# Enhance temp files
+.enhance/
+
+coverage/
+
+# Generated assets
+public/static.json
+public/browser/
+public/bundles/
+public/pages/
+
+# Architect CloudFormation
+sam.json
+sam.yaml
+
+.DS_Store
 
 # Local Netlify folder
 .netlify

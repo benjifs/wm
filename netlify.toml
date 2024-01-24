@@ -2,6 +2,10 @@
 	directory = "./functions"
 	node_bundler = "esbuild"
 
+[build]
+	command = ""
+	publish = ""
+
 [[redirects]]
 	from = "/*"
 	to = "/.netlify/functions/:splat"
