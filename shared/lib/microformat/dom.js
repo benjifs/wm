@@ -23,8 +23,8 @@ function findEntries(mf) {
     if (mf.value) {
       return mf;
     }
-    if (mf.properties && mf.properties.content) {
-      if (Array.isArray(mf.properties.content)) {
+    if (mf.properties) {
+      if (mf.properties.content && Array.isArray(mf.properties.content)) {
         return mf.properties.content.map((content) => {
           return {
             properties: {

@@ -26,6 +26,6 @@ const fixture = {
 tap.test('empty h-entry', (t) => {
   const res = findEntries(fixture.items);
 
-  t.equal(res.length, 0);
+  t.equal(res.length, 1);
   t.end();
 });
