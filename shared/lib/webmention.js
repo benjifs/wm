@@ -79,7 +79,7 @@ class Webmention extends EventEmitter {
         const endpoints = await getEndpoints(
           links.filter(ignoreOwn(permalink)),
           (type, data) => this.emit(type, data),
-          this.limit
+          // this.limit
         );
 
         if (endpoints.length === 0) return false;
