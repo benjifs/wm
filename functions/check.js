@@ -1,43 +1,43 @@
 import Webmention from '../shared/lib/webmention'
 const sendMention = require('../shared/lib/send')
 
-const respond = (code, body) => ({ statusCode: code, body: JSON.stringify(body) })
+const respond = (code, body) => (new Response(JSON.stringify(body), { status: code }))
 
-exports.handler = async e => {
-	const params = e.queryStringParameters
+export default async (req) => {
+	if (!['GET', 'POST'].includes(req.method)) return respond(405, { error: 'method not allowed' })
 
-	if (!['GET', 'POST'].includes(e.httpMethod)) return respond(405, { error: true, message: 'method not allowed' })
-	if (!params || !params.url) return respond(400, { error: true, message: 'missing url' })
+	const params = new URL(req.url).searchParams
+	const url = params.get('url')
+	const limit = params.get('limit') || 10
+	if (!url) return respond(400, { error: 'Missing "url"' })
 
-	const checkWebmentions = () => new Promise((resolve, reject) => {
-		const wm = new Webmention({ limit: params.limit || 10 })
+	const checkWebmentions = (method) => new Promise((resolve, reject) => {
+		const wm = new Webmention({ limit })
 		wm.on('error', e => {
-			reject({ error: true, message: e.message })
+			reject({ error: e.message })
 		})
 
 		wm.on('endpoints', urls => {
-			if (e.httpMethod == 'POST') {
+			if ('POST' == method) {
 				return Promise.all(urls.map(sendMention)).then(reply => {
 					resolve({ urls: reply })
 				})
 			}
+
 			if (urls.length === 0 && wm.mentions.length > 0) {
 				reject({
-					error: true,
-					message: `No webmention endpoints found in the ${
-						wm.mentions.length
-					} content ${wm.mentions.length === 1 ? 'entry' : 'entries'}`,
+					error: `No webmention endpoints found in the ${wm.mentions.length} content ${wm.mentions.length === 1 ? 'entry' : 'entries'}`,
 				})
 			} else {
 				resolve({ urls })
 			}
 		})
 
-		wm.fetch(params.url)
+		wm.fetch(url)
 	})
 
 	try {
-		const res = await checkWebmentions()
+		const res = await checkWebmentions(req.method)
 		return respond(200, res)
 	} catch (e) {
 		return respond(400, e)
