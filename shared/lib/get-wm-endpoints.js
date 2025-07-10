@@ -10,7 +10,7 @@ const wm = require('./endpoint');
  * @returns {Promise<WebMention[]>}
  */
 async function main(urls, progress = () => {}, limit = 10) {
-  progress('log', 'URLs to check: ' + urls.length, limit);
+  progress('log', `URLs to check: ${urls.length} | ${limit}`);
   progress('progress-update', { type: 'endpoints', value: urls.length });
 
   return Promise.all(

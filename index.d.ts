@@ -9,7 +9,10 @@ interface WebMention {
 }
 
 interface ProgressCallback {
-  (event: string, { type: string, value: number, data: any }): void;
+  (event: string, { type: string, value: number, data?: any }): void;
+}
+interface ProgressCallback {
+  (event: string, message: string): void;
 }
 
 interface EndpointCallback {
