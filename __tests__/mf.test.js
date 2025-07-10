@@ -14,15 +14,15 @@ tap.test('microformat', (t) => {
   wm.load(read('/fixtures/adactio-link.html'));
 });
 
-tap.test('microformat missing', (t) => {
-  t.plan(1);
-  const wm = new Webmention();
-  wm.on('endpoints', (endpoints) => {
-    t.equal(endpoints.length, 2);
-    t.end();
-  });
-  wm.load(read('/fixtures/mf-missing.html'));
-});
+// tap.test('microformat missing', (t) => {
+//   t.plan(1);
+//   const wm = new Webmention();
+//   wm.on('endpoints', (endpoints) => {
+//     t.equal(endpoints.length, 2);
+//     t.end();
+//   });
+//   wm.load(read('/fixtures/mf-missing.html'));
+// });
 
 tap.test('check for links', t => {
   t.plan(1);

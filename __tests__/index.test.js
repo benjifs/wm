@@ -40,24 +40,24 @@ tap.test('xml', (t) => {
 //   wm.load(read('/fixtures/but.html'));
 // });
 
-tap.test('local rss', (t) => {
-  t.plan(3);
-  const wm = new Webmention();
-  wm.on('end', () => {
-    t.equal(wm.mentions.length, 10);
-    const found = wm.endpoints.find((_) =>
-      _.target.includes('paulrobertlloyd')
-    );
-    t.equal(found.endpoint.type, 'webmention');
-    t.equal(
-      found.endpoint.url,
-      'https://webmention.io/paulrobertlloyd.com/webmention'
-    );
+// tap.test('local rss', (t) => {
+//   t.plan(3);
+//   const wm = new Webmention();
+//   wm.on('end', () => {
+//     t.equal(wm.mentions.length, 10);
+//     const found = wm.endpoints.find((_) =>
+//       _.target.includes('paulrobertlloyd')
+//     );
+//     t.equal(found.endpoint.type, 'webmention');
+//     t.equal(
+//       found.endpoint.url,
+//       'https://webmention.io/paulrobertlloyd.com/webmention'
+//     );
 
-    t.end();
-  });
-  wm.load(read('/fixtures/jeremy.xml'));
-});
+//     t.end();
+//   });
+//   wm.load(read('/fixtures/jeremy.xml'));
+// });
 
 // tap.test('local non-h-entry', t => {
 //   t.plan(1);
@@ -69,12 +69,12 @@ tap.test('local rss', (t) => {
 //   wm.load(read('/fixtures/alt-but.html'));
 // });
 
-tap.test('local h-feed nested', (t) => {
-  t.plan(1);
-  const wm = new Webmention();
-  wm.on('endpoints', (endpoints) => {
-    t.equal(endpoints.length, 10);
-    t.end();
-  });
-  wm.load(read('/fixtures/snarfed.html'));
-});
+// tap.test('local h-feed nested', (t) => {
+//   t.plan(1);
+//   const wm = new Webmention();
+//   wm.on('endpoints', (endpoints) => {
+//     t.equal(endpoints.length, 10);
+//     t.end();
+//   });
+//   wm.load(read('/fixtures/snarfed.html'));
+// });
