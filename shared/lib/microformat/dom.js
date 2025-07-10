@@ -74,7 +74,9 @@ async function dom(html, { url, limit }) {
     extraLinks: () => {
       const res = [];
 
-      const ignoreKeys = ['author', 'url', 'content', 'comment'];
+      const ignoreKeys = ['author', 'url', 'content',
+        // experimental for received webmentions
+        'comment', 'like', 'bookmark'];
       for (const key in entries[0].properties) {
         if (ignoreKeys.includes(key)) continue;
         let a = entries[0].properties[key].map(value => {
