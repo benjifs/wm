@@ -1,7 +1,8 @@
 import Webmention from '../shared/lib/webmention'
 const sendMention = require('../shared/lib/send')
 
-const respond = (code, body) => (new Response(JSON.stringify(body), { status: code }))
+const respond = (code, body, headers = { 'Content-Type': 'application/json' }) =>
+	(new Response(JSON.stringify(body), { status: code, headers }))
 
 export default async (req) => {
 	if (!['GET', 'POST'].includes(req.method)) return respond(405, { error: 'method not allowed' })
