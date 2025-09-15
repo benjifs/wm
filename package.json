@@ -1,9 +1,9 @@
 {
-  "name": "@remy/webmention",
-  "version": "1.5.0",
-  "description": "Web Mentions sender",
+  "name": "@benjifs/wm",
+  "version": "1.6.0",
+  "description": "Fork of @remy/webmention",
   "main": "./shared/lib/webmention.js",
-  "repository": "github:remy/wm",
+  "repository": "github:benjifs/wm",
   "bin": {
     "wm": "./bin/wm.js",
     "webmention": "./bin/wm.js"
@@ -25,7 +25,7 @@
     "webmentions",
     "indieweb"
   ],
-  "author": "Remy Sharp (https://remysharp.com)",
+  "author": "Benji Encalada Mora (https://benji.dog)",
   "license": "MIT",
   "dependencies": {
     "cheerio": "^0.22.0",

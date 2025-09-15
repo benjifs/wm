@@ -1,6 +1,13 @@
 # Fork of webmention.app
 
-This forked version of [webmention.app](https://github.com/remy/wm) adds support for parsing links outside of `e-content`. It is deployed to [Netlify](https://netlify.com) and uses a [function](https://functions.netlify.com/) to receive requests.
+This forked version of [webmention.app](https://github.com/remy/wm). It is deployed to [Netlify](https://netlify.com) and uses a [function](https://functions.netlify.com/) to receive requests.
+
+## Changes
+- Add Netlify functions support ([check.js](https://github.com/benjifs/wm/blob/feat/netlify/functions/check.js))
+- Add support for parsing links in `h-entry` but outside `e-content` ([4d856e5](https://github.com/benjifs/wm/commit/4d856e568f0e7002837cd42dc63e6f5bb9c69f47)). [PR #31](https://github.com/remy/wm/pull/31).
+- Remove `limit` in `getEndpoints` ([58c9312](https://github.com/benjifs/wm/commit/58c931294c68002991de5d26a1a1eccbd6544d3b)). [Issue #66](https://github.com/remy/wm/issues/66).
+
+## Usage
 
 To check for webmentions:
 
@@ -9,6 +16,14 @@ To check for webmentions:
 To send webmentions:
 
 **`POST`** https://webmention.netlify.app/check?url=:url
+
+You can also install this fork for your project with:
+
+```sh
+npm install @benjifs/wm
+```
+
+Everything below is from the original README for the project.
 
 ---
 
