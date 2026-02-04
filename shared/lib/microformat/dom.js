@@ -15,7 +15,8 @@ function findEntries(mf) {
     }, []);
   }
 
-  if (mf.children) {
+  // ignore children in h-entry. tailwind classes are confusing the parser
+  if (!mf.type.includes('h-entry') && mf.children) {
     return findEntries(mf.children);
   }
 
