@@ -13,10 +13,17 @@ function links({ $, base, url = '' }) {
     .map((i, element) => {
       const $$ = $(element);
 
-      let permalink = resolve(
-        baseHref,
-        $$.find('.u-url').attr('href') || element.link || ''
-      );
+      // Prefer element.link (from microformat properties.url) if it's an absolute URL,
+      // otherwise try .u-url from content, then fall back to element.link or empty
+      let permalink;
+      if (element.link && element.link.startsWith('http')) {
+        permalink = element.link;
+      } else {
+        permalink = resolve(
+          baseHref,
+          $$.find('.u-url').attr('href') || element.link || ''
+        );
+      }
 
       if (!permalink.includes(hostname) && base.length === 1) {
         // it's probably bad, so let's reset it
