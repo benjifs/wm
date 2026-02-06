@@ -20,6 +20,7 @@ class Webmention extends EventEmitter {
     this.mentions = [];
     this.endpoints = null;
     this.counts = {};
+    this.isRSS = false;
 
     this.on('progress-update', ({ type, value, data }) => {
       const v = (this.counts[type] = (this.counts[type] || 0) + value);
@@ -79,7 +80,9 @@ class Webmention extends EventEmitter {
         const endpoints = await getEndpoints(
           links.filter(ignoreOwn(permalink)),
           (type, data) => this.emit(type, data),
-          // this.limit
+          // if limit is used and it's an RSS feed, assume the limit is
+          // for items in the feed. Otherwise, use limit for entry
+          this.isRSS ? null : this.limit
         );
 
         if (endpoints.length === 0) return false;
@@ -104,6 +107,7 @@ class Webmention extends EventEmitter {
   getFromContent(content) {
     if (smellsLikeRSS(content)) {
       this.emit('log', 'Content is RSS');
+      this.isRSS = true;
       return this.getLinksFromFeed({ xml: content });
     }
 

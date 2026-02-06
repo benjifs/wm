@@ -1,6 +1,6 @@
 {
   "name": "@benjifs/wm",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "description": "Fork of @remy/webmention",
   "main": "./shared/lib/webmention.js",
   "repository": "github:benjifs/wm",
