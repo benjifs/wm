@@ -46,9 +46,13 @@ async function main(urls, progress = () => {}, limit = 10) {
   )
     .then((res) => {
       return urls.map((url) => {
+        // Use exact match instead of startsWith to avoid matching
+        // https://webmention.rocks/test/1 to https://webmention.rocks
+        // Also, normalize URLs by removing trailing slashes for comparison
+        const normalizeUrl = (u) => u.endsWith('/') ? u.slice(0, -1) : u;
         return Object.assign(
           { url },
-          res.find(({ source }) => url.startsWith(source))
+          res.find(({ source }) => normalizeUrl(url) === normalizeUrl(source))
         );
       });
     })
